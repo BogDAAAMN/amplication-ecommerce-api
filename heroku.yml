@@ -7,7 +7,3 @@ build:
     web: Dockerfile
 run:
   web: node server/dist/main
-release:
-  command:
-    - ./ npm run db:init
-   image: web
