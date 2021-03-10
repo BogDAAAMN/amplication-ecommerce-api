@@ -1,7 +1,6 @@
 setup:
   addons:
-    - plan: heroku-postgresql:hobby-dev
-      as: DATABASE
+  - plan: heroku-postgresql:hobby-dev
 build:
   docker:
     web: Dockerfile
@@ -10,7 +9,11 @@ build:
     BCRYPT_SALT: 10
 release:
   command:
-    - cd server && npm run db:init
+    - cd server
+    - npm run db:init
   image: web
+  config:
+    POSTGRESQL_URL: $DATABASE_URL
+    BCRYPT_SALT: 10
 run:
   web: node server/dist/main
