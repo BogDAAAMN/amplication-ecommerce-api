@@ -1,9 +1,11 @@
 setup:
   addons:
     - plan: heroku-postgresql
-      as: POSTGRESQL
+      as: DATABASE
 build:
   docker:
     web: Dockerfile
+  config:
+    POSTGRESQL_URL: $DATABASE_URL
 run:
   web: node server/dist/main
