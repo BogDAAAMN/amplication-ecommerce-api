@@ -6,14 +6,5 @@ build:
     web: Dockerfile
   config:
     POSTGRESQL_URL: $DATABASE_URL
-    BCRYPT_SALT: 10
-release:
-  command:
-    - cd server
-    - npm run db:init
-  image: web
-  config:
-    POSTGRESQL_URL: $DATABASE_URL
-    BCRYPT_SALT: 10
 run:
   web: node server/dist/main
